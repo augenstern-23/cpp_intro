@@ -38,7 +38,7 @@ struct Person
     int age;
     Gender gender;
 
-    void operator<(Person const & p){
+    bool operator<(Person const & p) const {
         age < p.age;
     }
 
@@ -68,9 +68,6 @@ bool compare_age(Person const & p1, Person const & p2) {
 }
 
 int main() {
-    string name;
-    int age;
-    char gender_st;
     char addmore;
     vector<Person> persons;
 
@@ -88,7 +85,8 @@ int main() {
             break;
         }
     }
-    sort(persons.begin(), persons.end(), compare_age);
+    sort(persons.begin(), persons.end(), [](Person const & p1, Person const & p2){return p1.age < p2.age;});
+    sort(persons.begin(), persons.end());
     for(Person p : persons){
         cout << "name: " << p.name << "\tage: " << p.age << "\tgender: " << enum_to_string(p.gender) << endl;
     }
