@@ -1,0 +1,119 @@
+cpp intro course day 2
+
+
+Tasks for the computer lab I
+Write a program that repeatedly asks the user to input a person's name and postal code.
+Immediately after an entry is submitted the program should respond with or depending on the postal code entered1
+After that it should ask the user something like ;
+if y is entered it should repeat the last step;
+if n is entered it should print the percentage of entered people that lives in Berlin and the name of the person with the smallest postal code; and then quit.
+
+
+----------------- meine Version
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string name;
+int plz;
+char another;
+double berlincount;
+double peoplecount;
+
+void questions() {
+    cout << "Please enter your name: " << endl;
+    cin >> name;
+    cout << "Please enter your postal code: " << endl;
+    cin >> plz;
+    if ((10115 <= plz) && (14199 >= plz)) {
+        cout << name << " lives in Berlin" << endl;
+        berlincount++;
+        peoplecount++;
+    } else {
+        cout << name << " lives outside of Berlin" << endl;
+        peoplecount++;
+    }
+}
+
+void repeat(){
+    cout << "Enter another person? [y/n]" << endl;
+    cin >> another;
+    if ((another == 'y') || (another == 'Y')){
+        questions();
+        repeat();
+    }
+    else{
+        float perc = (berlincount/peoplecount)*100;
+        cout << perc << " % of people live in Berlin" << endl;
+    }
+}
+
+int main() {
+    questions();
+    repeat();
+    }
+
+-----------Max' Version
+#include <iostream>
+#include <string>
+#include <tuple>
+
+using namespace std;
+
+string name;
+int plz;
+char another;
+
+class Counter {
+public:
+    float peopleCount = 0;
+    int berlinCount = 0;
+    void questions();
+};
+
+void Counter::questions() {
+    cout << "Please enter your name: " << endl;
+    cin >> name;
+    cout << "Please enter your postal code: " << endl;
+    cin >> plz;
+    if ((10115 <= plz) && (14199 >= plz)) {
+        cout << name << " lives in Berlin" << endl;
+        berlinCount++;
+        peopleCount++;
+    } else {
+        peopleCount++;
+        cout << name << " lives outside of Berlin" << endl;
+    }
+    return;
+}
+
+void repeat(){
+    Counter counter;
+    counter.questions();
+    while(true) {
+        cout << "Enter another person? [y/n]" << endl;
+        cin >> another;
+        if ((another == 'y') || (another == 'Y')){
+            counter.questions();
+        }
+        else{
+            float perc = counter.berlinCount / counter.peopleCount * 100;
+            cout << perc << " % of people live in Berlin" << endl;
+            break;
+        }
+    }
+}
+
+int main() {
+    repeat();
+}
+
+
+Tasks for the computer lab II a
+Copy'n'paste some of the examples from the slides and check if they make sense to you!
+What happens when you return something of const type from a function?
+#
+Can constants be initialised from functions that return a non-const type?
+What happens when you return a reference? What about the example on slide 20?
+What combinations of const, const &, & (and none) are there for variables and for function return values? Which combinations are valid/invalid for initialising the variable?
