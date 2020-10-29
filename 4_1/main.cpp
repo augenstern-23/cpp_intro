@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <tuple>
+#include <algorithm>
 
 
 using namespace std;
@@ -54,9 +55,9 @@ string name;
 int age;
 Gender gender;
 
-//auto tup_person{ tie(name, age, gender)};
+auto person_tuple{ tie(name, age, gender)};
 
-tuple<string const&, int const&, Gender const&> person_tuple{name, age, gender};
+//tuple<string const&, int const&, Gender const&> person_tuple{name, age, gender};
 
 
 
@@ -72,16 +73,16 @@ tuple<string const&, int const&, Gender const&> input_person() {
     cout << "Please input gender [f/m/n]: ";
     cin >> gender_st;
     //Person p {name, age, char_to_enum(gender_st)};
-    tuple<string const&, int const&, Gender const&> tup_p{name, age, char_to_enum(gender_st)};
+    tuple<string , int , Gender > tup_p{name, age, char_to_enum(gender_st)};
     return person_tuple;
 }
 
 /*bool compare_age(Person const & p1, Person const & p2) {
     return (p1.age < p2.age);
 }*/
-//bool sortbysec(const tuple <string const&, int const&, Gender const&> & a, const tuple <string const&, int const&, Gender const&> & b){
-//    return (get<1> (a) < get<1>(b));
-//}
+bool sortbysec(const tuple <string , int , Gender > & a, const tuple <string , int , Gender > & b){
+    return (get<1>(a) < get<1>(b));
+}
 
 int main() {
     char addmore;
@@ -100,7 +101,7 @@ int main() {
             break;
         }
     }
-  //  sort(persons.begin(), persons.end(), sortbysec);
+    sort(persons.begin(), persons.end(), sortbysec);
     //sort(persons.begin(), persons.end(), []( const & p1, Person const & p2){return p1.age < p2.age;});
     //sort(persons.begin(), persons.end());
     //for(Person p : persons){
