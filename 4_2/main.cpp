@@ -1,4 +1,6 @@
-/* implement a patient database
+/* cpp introductory course day 4
+ * 
+ * implement a patient database
  * provide interface which offers the options:
  *      add new patient record [a]
  *      delete patient record by id [d]
@@ -31,17 +33,17 @@ void d(int const& id)
     patient_database.erase(id);
 }
 
-void p(int const& id) {
+void p(int const& id)
+{
+    cout << "ID: " << patient_database.find(id)->first;
+    cout << ", Name: " << get<0>(patient_database.find(id)->second);
+    cout << ", Health Status: "<< get<1>(patient_database.find(id)->second);
+}
 
-    auto it = patient_database.find(id);
-    if (it != patient_database.end()) {
-        cout << id;
-    }
+void q()
+{
+    patient_database.clear();
 
-    for (auto[id, name_status] : patient_database) {
-        cout << "Patient ID: " << id << ", Patient Name: " << get<0>(name_status) << ", Health Status: "
-             << get<1>(name_status) << endl;
-    }
 }
 
 int main()
@@ -51,6 +53,8 @@ int main()
     a(22, "Marianne", "dead");
 
     d(22);
+    p(1);
+    q();
     p(1);
 }
 
