@@ -3,6 +3,7 @@
 #include <vector>
 #include <tuple>
 
+
 using namespace std;
 
 enum class Gender {FEMALE, MALE, UNDEFINED,};
@@ -33,7 +34,7 @@ Gender char_to_enum (char const & g)
     }
 }
 
-struct Person
+/*struct Person
 {
     string name;
     int age;
@@ -47,7 +48,7 @@ struct Person
     {
         cout << name << " is " << age << " years old and " << enum_to_string(gender) << endl;
     };
-};
+};*/
 
 string name;
 int age;
@@ -59,9 +60,9 @@ tuple<string const&, int const&, Gender const&> person_tuple{name, age, gender};
 
 
 
-Person input_person() {
-    string name;
-    int age;
+tuple<string const&, int const&, Gender const&> input_person() {
+    //string name;
+    //int age;
     char gender_st;
 
     cout << "Please input name: ";
@@ -70,17 +71,21 @@ Person input_person() {
     cin >> age;
     cout << "Please input gender [f/m/n]: ";
     cin >> gender_st;
-    Person p {name, age, char_to_enum(gender_st)};
-    return p;
+    //Person p {name, age, char_to_enum(gender_st)};
+    tuple<string const&, int const&, Gender const&> tup_p{name, age, char_to_enum(gender_st)};
+    return person_tuple;
 }
 
-bool compare_age(Person const & p1, Person const & p2) {
+/*bool compare_age(Person const & p1, Person const & p2) {
     return (p1.age < p2.age);
-}
+}*/
+//bool sortbysec(const tuple <string const&, int const&, Gender const&> & a, const tuple <string const&, int const&, Gender const&> & b){
+//    return (get<1> (a) < get<1>(b));
+//}
 
 int main() {
     char addmore;
-    vector<Person> persons;
+    vector<tuple<string const&, int const&, Gender const&>> persons;
     persons.push_back(input_person());
 
     while (true){
@@ -95,9 +100,10 @@ int main() {
             break;
         }
     }
-    sort(persons.begin(), persons.end(), [](Person const & p1, Person const & p2){return p1.age < p2.age;});
-    sort(persons.begin(), persons.end());
-    for(Person p : persons){
-        cout << "name: " << p.name << "\tage: " << p.age << "\tgender: " << enum_to_string(p.gender) << endl;
-    }
+  //  sort(persons.begin(), persons.end(), sortbysec);
+    //sort(persons.begin(), persons.end(), []( const & p1, Person const & p2){return p1.age < p2.age;});
+    //sort(persons.begin(), persons.end());
+    //for(Person p : persons){
+    //    cout << "name: " << p.name << "\tage: " << p.age << "\tgender: " << enum_to_string(p.gender) << endl;
+   // }
 }
