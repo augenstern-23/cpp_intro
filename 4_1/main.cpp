@@ -55,7 +55,7 @@ tuple<string const&, int const&, Gender const&> input_person()
     return person_tuple;
 }
 
-bool sortbysec(tuple <string, int, Gender> & a,  tuple <string, int, Gender> & b){
+bool sort_by_sec(tuple <string, int, Gender> & a,  tuple <string, int, Gender> & b){
     return (get<1>(a) < get<1>(b));
 }
 
@@ -80,7 +80,7 @@ int main()
             break;
         }
     }
-    sort(persons.begin(), persons.end(), sortbysec);
+    sort(persons.begin(), persons.end(), sort_by_sec);
     for(tuple<string, int, Gender> p : persons){
         cout << "name: " << get<0>(p) << "\tage: " << get<1>(p) << "\tgender: " << enum_to_string(get<2>(p)) << endl;
    }

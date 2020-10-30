@@ -1,5 +1,5 @@
 /* cpp introductory course day 4
- * 
+ *
  * implement a patient database
  * provide interface which offers the options:
  *      add new patient record [a]
@@ -19,7 +19,7 @@
 
 
 using namespace std;
-map < int, tuple <string, string>> patient_database;
+map <int, tuple <string, string>> patient_database;
 
 void a(int const& id, string const& name, string const& health_status)
 {
@@ -43,7 +43,6 @@ void p(int const& id)
 void q()
 {
     patient_database.clear();
-
 }
 
 int main()
@@ -53,8 +52,6 @@ int main()
     a(22, "Marianne", "dead");
 
     d(22);
-    p(1);
-    q();
     p(1);
 }
 
